@@ -1,0 +1,64 @@
+@model MovieApp.Models.MovieGenreViewModel
+
+@{
+    ViewData["Title"] = "My Movies";
+}
+
+<h1>My Movies</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<form asp-controller="Movies" asp-action="Index" method="get">
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label for="movieGenre">Genre:</label>
+            <select asp-for="MovieGenre" asp-items="Model.Genres" class="form-control">
+                <option value="">All</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="searchString">Title:</label>
+            <input type="text" asp-for="SearchString" class="form-control" placeholder="Search by title" />
+        </div>
+        <div class="col-md-3">
+            <label for="searchYear">Year or Later:</label>
+            <input type="number" asp-for="SearchYear" class="form-control" placeholder="e.g. 2000" />
+        </div>
+        <div class="col-md-3">
+            <label>&nbsp;</label>
+            <button type="submit" class="btn btn-secondary w-100">Filter</button>
+        </div>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Release Date</th>
+            <th>Genre</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Movies!)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.ReleaseDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.Genre)</td>
+                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                <td>@Html.DisplayFor(modelItem => item.Rating)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
