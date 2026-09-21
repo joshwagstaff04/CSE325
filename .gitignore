@@ -1,0 +1,8 @@
+bin/
+obj/
+.dotnet_home/
+.dotnet8/
+.dotnet-install.sh
+.empty_nuget/
+sales-summary.txt
+stores/

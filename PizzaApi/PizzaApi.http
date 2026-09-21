@@ -1,0 +1,34 @@
+@PizzaApi_HostAddress = http://localhost:5095
+
+GET {{PizzaApi_HostAddress}}/pizza
+Accept: application/json
+
+###
+
+GET {{PizzaApi_HostAddress}}/pizza/3
+Accept: application/json
+
+###
+
+POST {{PizzaApi_HostAddress}}/pizza
+Content-Type: application/json
+
+{
+  "name": "Hawaiian",
+  "isGlutenFree": false
+}
+
+###
+
+PUT {{PizzaApi_HostAddress}}/pizza/4
+Content-Type: application/json
+
+{
+  "id": 4,
+  "name": "Hawaiian Deluxe",
+  "isGlutenFree": false
+}
+
+###
+
+DELETE {{PizzaApi_HostAddress}}/pizza/4
